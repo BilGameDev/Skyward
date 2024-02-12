@@ -7,11 +7,11 @@ Fly through the orchard skies, dodge obstacles, collect feathers, and experience
 Embark on a whimsical journey through the lush apple orchard skies in "Skyward"! Guide your graceful bird through a vibrant world filled with obstacles and collect shimmering feathers along the way. With intuitive controls and charming visuals, immerse yourself in this delightful endless runner adventure. Stay tuned for exciting updates and new levels as we continue to expand this enchanting experience. Skyward offers pure, ad-free fun for all ages! Fly high, dodge obstacles, and let your feathers soar in this captivating runner game. Download now and take flight!
 
 # Screenshots
-<img src="https://github.com/BilGameDev/skyward/assets/107997032/f34f42f3-6b5c-4a78-abab-47316941da33" width="300">
+<img src="https://github.com/BilGameDev/skyward/assets/107997032/f34f42f3-6b5c-4a78-abab-47316941da33" width="150">
 
-<img src="https://github.com/BilGameDev/skyward/assets/107997032/b1253068-07d8-4516-b3e3-589c0c685b55" width="300">
+<img src="https://github.com/BilGameDev/skyward/assets/107997032/b1253068-07d8-4516-b3e3-589c0c685b55" width="150">
 
-<img src="https://github.com/BilGameDev/skyward/assets/107997032/2c3c78d7-0c25-4646-8e3e-3ee41735d01c" width="300">
+<img src="https://github.com/BilGameDev/skyward/assets/107997032/2c3c78d7-0c25-4646-8e3e-3ee41735d01c" width="150">
 
 # Notice
 
@@ -23,9 +23,9 @@ The dependency injection used is called Zenject.
 
 # Game
 
-<img src="https://github.com/BilGameDev/skyward/assets/107997032/66b004a3-0be7-4ddf-b6de-2659db9b749e" width="300">
-<img src="https://github.com/BilGameDev/skyward/assets/107997032/9278bc39-fae6-43e3-91f3-f98b92f753d0" width="300">
-<img src="https://github.com/BilGameDev/skyward/assets/107997032/84ca0c65-6b22-46bc-b7e8-d9f606cc9908" width="300">
+<img src="https://github.com/BilGameDev/skyward/assets/107997032/66b004a3-0be7-4ddf-b6de-2659db9b749e" width="150">
+<img src="https://github.com/BilGameDev/skyward/assets/107997032/9278bc39-fae6-43e3-91f3-f98b92f753d0" width="150">
+<img src="https://github.com/BilGameDev/skyward/assets/107997032/84ca0c65-6b22-46bc-b7e8-d9f606cc9908" width="150">
 
 Skyward is a unique endless runner game that introduces a new type of input and gameplay mechanics than the traditional swipe based runners. Skyward allows complete and constant control over your player object which in this case is a Bird.
 
