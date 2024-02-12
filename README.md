@@ -14,7 +14,7 @@ Embark on a whimsical journey through the lush apple orchard skies in "Skyward"!
 <img src="https://github.com/BilGameDev/skyward/assets/107997032/2c3c78d7-0c25-4646-8e3e-3ee41735d01c" width="150">
 
 # Notice
-
+This game does not use any runner templates and was made from the ground up with the help of a few visual assets.
 The game uses a curved shader with the help of Curved Worlds, an asset available to purchase from the Unity Asset Store. I have removed it from the project files in this repo as I have no rights to distribute it. 
 Everything else present in the repo is available for free on the Asset Store.
 
