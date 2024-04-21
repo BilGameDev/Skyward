@@ -5,18 +5,23 @@ using Zenject;
 
 public class BirdDamage : MonoBehaviour
 {
+    #region Fields
+
     // Injects the game manager (Dependecy Injection)
     [Inject]
     public GameManager gameManager { get; set; }
-    [SerializeField] SkinnedMeshRenderer meshRenderer;
-    [SerializeField] BirdAudio birdAudio;
+
+    [SerializeField] SkinnedMeshRenderer _meshRenderer;
+    [SerializeField] BirdAudio _birdAudio;
+
+    #endregion
 
     // This method is called on death
     public void OnDie()
     {
-        birdAudio.OnDiePlay();
-        gameManager.poof.Play();
-        meshRenderer.enabled = false;
-        gameManager.cameraShaker.TriggerShake(0.2f);
+        _birdAudio.OnDiePlay();
+        gameManager.Poof.Play();
+        _meshRenderer.enabled = false;
+        gameManager.CameraShaker.TriggerShake(0.2f);
     }
 }

@@ -5,15 +5,19 @@ using Zenject;
 
 public class BirdAnimator : MonoBehaviour
 {
-    [SerializeField] float tiltAmount;
-    [SerializeField] Animator animator;
-
+    #region Fields
     [Inject]
     public BirdMovement birdMovement { get; set; }
+
+    [SerializeField] float _tiltAmount; // Ampunt to Tilt
+    [SerializeField] Animator _animator; // Animator component
+
+    #endregion
+
 
     void Update()
     {
         // Sets the bird animations based on movement
-        animator.SetFloat("X", -birdMovement.move.z * tiltAmount);
+        _animator.SetFloat("X", -birdMovement.move.z * _tiltAmount);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skyward/Bird Settings", order = 1)]
 public class BirdSettings : ScriptableObject
 {
-    public Color bodyColor;
-    public Color tailColor;
-    public ColorSettings[] colorSettings;
+    public Color BodyColor;
+    public Color TailColor;
+    public ColorSettings[] ColorSettings;
 }

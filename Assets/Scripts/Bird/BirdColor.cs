@@ -5,9 +5,12 @@ using UnityEngine;
 
 public class BirdColor : MonoBehaviour
 {
-    [SerializeField] BirdSettings userSettings;
-    [SerializeField] BirdSettings defaultSettings;
-    [SerializeField] Color[] randomColors;
+    #region Fields
+    [SerializeField] BirdSettings _userSettings;
+    [SerializeField] BirdSettings _defaultSettings;
+    [SerializeField] Color[] _randomColors;
+
+    #endregion
 
     void Start()
     {
@@ -17,40 +20,40 @@ public class BirdColor : MonoBehaviour
     // Picks a random color for the bird
     public void RandomizeBird()
     {
-        userSettings.bodyColor = GetRandomColor();
-        userSettings.tailColor = GetRandomColor();
+        _userSettings.BodyColor = GetRandomColor();
+        _userSettings.TailColor = GetRandomColor();
 
-        SetBirdColor(userSettings);
+        SetBirdColor(_userSettings);
     }
 
     // Gets a random color from the defined list
     public Color GetRandomColor()
     {
-        return randomColors[UnityEngine.Random.Range(0, randomColors.Length)];
+        return _randomColors[UnityEngine.Random.Range(0, _randomColors.Length)];
     }
 
     // Sets the material colors
     public void SetBirdColor(BirdSettings settings)
     {
-        foreach (var setting in settings.colorSettings)
+        foreach (var setting in settings.ColorSettings)
         {
-            if (setting.name == "Tail")
-                setting.material.SetColor("_BaseColor", settings.tailColor);
+            if (setting.Name == "Tail")
+                setting.Material.SetColor("_BaseColor", settings.TailColor);
             else
-                setting.material.SetColor("_BaseColor", settings.bodyColor);
+                setting.Material.SetColor("_BaseColor", settings.BodyColor);
         }
     }
 
     public void SetDefaultColor()
     {
-        SetBirdColor(defaultSettings);
+        SetBirdColor(_defaultSettings);
     }
 }
 
 [Serializable]
 public class ColorSettings
 {
-    public string name;
-    public Material material;
+    public string Name;
+    public Material Material;
 }
 

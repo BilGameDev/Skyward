@@ -4,26 +4,29 @@ using UnityEngine;
 
 public class MainMenuUI : MonoBehaviour
 {
-    [SerializeField] CanvasGroup mainMenuGroup;
-    [SerializeField] RectTransform mainMenuPanel;
-    [SerializeField] RectTransform mainCanvas;
-    [SerializeField] CanvasGroup fadeGroup;
+    #region Fields
+    [SerializeField] CanvasGroup _mainMenuGroup;
+    [SerializeField] RectTransform _mainMenuPanel;
+    [SerializeField] RectTransform _mainCanvas;
+    [SerializeField] CanvasGroup _fadeGroup;
+
+    #endregion
 
     void Start()
     {
-        fadeGroup.FadeOut(1);
+        _fadeGroup.FadeOut(1);
     }
 
     //Tweens the mai menu panels in
     public void OpenMenu()
     {
-        mainMenuGroup.FadeIn(.3f);
-        mainMenuPanel.MoveUI(new Vector2(.5f, .3f), mainCanvas, 1f, Platinio.UI.PivotPreset.LowerCenter).SetEase(Ease.EaseOutElastic);
+        _mainMenuGroup.FadeIn(.3f);
+        _mainMenuPanel.MoveUI(new Vector2(.5f, .3f), _mainCanvas, 1f, Platinio.UI.PivotPreset.LowerCenter).SetEase(Ease.EaseOutElastic);
     }
 
     public void CloseMenu()
     {
-        mainMenuPanel.MoveUI(new Vector2(.5f, -1f), mainCanvas, 1f, Platinio.UI.PivotPreset.LowerCenter);
-        mainMenuGroup.FadeOut(.3f);
+        _mainMenuPanel.MoveUI(new Vector2(.5f, -1f), _mainCanvas, 1f, Platinio.UI.PivotPreset.LowerCenter);
+        _mainMenuGroup.FadeOut(.3f);
     }
 }

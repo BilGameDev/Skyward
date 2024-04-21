@@ -11,7 +11,7 @@ public class Obstacle : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            trackMovement.objectPooler.gameManager.GameOver = true;
+            trackMovement.Pooler.gameManager.GameOver = true;
             other.GetComponent<BirdDamage>().OnDie();
             audioSource.Stop();
         }

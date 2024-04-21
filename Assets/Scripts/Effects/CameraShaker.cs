@@ -4,36 +4,39 @@ using UnityEngine;
 
 public class CameraShaker : MonoBehaviour
 {
-   public float shakeDuration = 0.5f;
+    #region Fields
+    public float ShakeDuration = 0.5f;
 
-    private Vector3 originalPos;
-    private float currentShakeDuration;
-    private float shakeMagnitude;
+    private Vector3 _originalPos;
+    private float _currentShakeDuration;
+    private float _shakeMagnitude;
+
+    #endregion
 
     void Awake()
     {
         // Set the original location
-        originalPos = transform.localPosition;
+        _originalPos = transform.localPosition;
     }
 
     void Update()
     {
         // Shakes the camera
-        if (currentShakeDuration > 0)
+        if (_currentShakeDuration > 0)
         {
-            transform.localPosition = originalPos + Random.insideUnitSphere * shakeMagnitude;
-            currentShakeDuration -= Time.deltaTime;
+            transform.localPosition = _originalPos + Random.insideUnitSphere * _shakeMagnitude;
+            _currentShakeDuration -= Time.deltaTime;
         }
         else
         {
-            transform.localPosition = originalPos;
-            currentShakeDuration = 0f;
+            transform.localPosition = _originalPos;
+            _currentShakeDuration = 0f;
         }
     }
 
     public void TriggerShake(float magnitude)
     {
-        currentShakeDuration = shakeDuration;
-        shakeMagnitude = magnitude;
+        _currentShakeDuration = ShakeDuration;
+        _shakeMagnitude = magnitude;
     }
 }

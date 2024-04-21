@@ -8,51 +8,55 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    #region Fields
+
     [Header("Cameras")]
-    [SerializeField] public GameObject endZoneCamera;
-    [SerializeField] public GameObject transitionCamera;
-    [SerializeField] public CinemachineVirtualCamera gameCamera;
-    [SerializeField] public CameraShaker cameraShaker;
+    [SerializeField] public GameObject EndZoneCamera;
+    [SerializeField] public GameObject TransitionCamera;
+    [SerializeField] public CinemachineVirtualCamera GameCamera;
+    [SerializeField] public CameraShaker CameraShaker;
 
     [Header("Particle System")]
-    [SerializeField] public ParticleSystem collector;
-    [SerializeField] public ParticleSystem specialCollector;
-    [SerializeField] public ParticleSystem poof;
+    [SerializeField] public ParticleSystem Collector;
+    [SerializeField] public ParticleSystem SpecialCollector;
+    [SerializeField] public ParticleSystem Poof;
 
     [Header("UI")]
-    [SerializeField] public Button restartLevel;
-    [SerializeField] public Button mainMenu;
+    [SerializeField] public Button RestartLevelButton;
+    [SerializeField] Button _mainMenuButton;
     public event Action OnGameOver;
 
     [Header("Audio")]
-    [SerializeField] AudioSource gameSource;
+    [SerializeField] AudioSource _gameSource;
 
-    public int currentScore;
+    public int _currentScore;
 
 
     public bool GameStarted;
     public bool EasterEggCollected;
 
-    private bool gameOver;
+    private bool _gameOver;
 
     public bool GameOver
     {
-        get { return gameOver; }
+        get { return _gameOver; }
         set
         {
-            if (gameOver != value)
+            if (_gameOver != value)
             {
-                gameOver = value;
+                _gameOver = value;
                 if (value == true) GameEnd();
             }
         }
     }
 
+    #endregion
+
     void Start()
     {
         //Add listeners to the buttons
-        restartLevel.onClick.AddListener(() => { RestartLevel(); });
-        mainMenu.onClick.AddListener(() => { MainMenu(); });
+        RestartLevelButton.onClick.AddListener(() => { RestartLevel(); });
+        _mainMenuButton.onClick.AddListener(() => { MainMenu(); });
     }
 
     void RestartLevel()
@@ -69,7 +73,7 @@ public class GameManager : MonoBehaviour
 
     void GameEnd()
     {
-        gameSource.volume = 0.1f;
+        _gameSource.volume = 0.1f;
         OnGameOver?.Invoke();
     }
 }

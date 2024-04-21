@@ -5,8 +5,10 @@ using Zenject;
 
 public class TrackMovement : MonoBehaviour
 {
-    [HideInInspector] public ObjectPooler objectPooler;
-    [SerializeField] EasterEggHandler easterEggHandler;
+    #region Fields
+
+    [HideInInspector] public ObjectPooler Pooler;
+    [SerializeField] EasterEggHandler _easterEggHandler;
     private int trackNumber;
 
     public int TrackNumber
@@ -18,22 +20,24 @@ public class TrackMovement : MonoBehaviour
             {
                 trackNumber = value;
                 //Checks if the easter egg should be spawned.
-                easterEggHandler.CheckEasterEgg(trackNumber);
+                _easterEggHandler.CheckEasterEgg(trackNumber);
             }
         }
     }
 
+    #endregion
+
     void Update()
     {
         //Moves the track tiles according to moving speed
-        if (!objectPooler.gameManager.GameOver)
-            transform.Translate(objectPooler.moveDirection * objectPooler.movingSpeed * Time.deltaTime);
+        if (!Pooler.gameManager.GameOver)
+            transform.Translate(Pooler.MoveDirection * Pooler.MovingSpeed * Time.deltaTime);
     }
 
     void FixedUpdate()
     {
         //Destroys the tile after it goes past the destroy zone
-        if (transform.position.x < -objectPooler.destoryZone)
-            objectPooler.DestroyChunk(this);
+        if (transform.position.x < -Pooler.DestoryZone)
+            Pooler.DestroyChunk(this);
     }
 }

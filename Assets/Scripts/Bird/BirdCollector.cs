@@ -6,11 +6,16 @@ using Zenject;
 
 public class BirdCollector : MonoBehaviour
 {
+    #region Fields
+
     [Inject]
     public GameManager gameManager { get; set; }
-    [SerializeField] RectTransform featherUI;
-    [SerializeField] TextMeshProUGUI scoreText;
-    [SerializeField] BirdAudio birdAudio;
+
+    [SerializeField] RectTransform _featherUI;
+    [SerializeField] TextMeshProUGUI _scoreText;
+    [SerializeField] BirdAudio _birdAudio;
+
+    #endregion
 
     void Start()
     {
@@ -19,29 +24,29 @@ public class BirdCollector : MonoBehaviour
 
     public void OnCollect()
     {
-        gameManager.currentScore++;
+        gameManager._currentScore++;
         AddScore();
         UIScaleUp();
-        gameManager.collector.Play();
-        birdAudio.OnCollectPlay();
+        gameManager.Collector.Play();
+        _birdAudio.OnCollectPlay();
     }
 
     // Plays the easter egg collect effect (This is not being used right now)
     public void OnCollectEasterEgg()
     {
-        gameManager.specialCollector.Play();
+        gameManager.SpecialCollector.Play();
     }
 
     // Add scores to the current score
     void AddScore()
     {
-        scoreText.text = gameManager.currentScore.ToString();
+        _scoreText.text = gameManager._currentScore.ToString();
     }
 
     // These Tweens make a bounce animation to the feather icon when a feather is collected
     void UIScaleUp()
     {
-        featherUI.ScaleTween(Vector3.one * 1.1f, .1f).SetEase(Ease.EaseInOutCubic).SetOnComplete(() =>
+        _featherUI.ScaleTween(Vector3.one * 1.1f, .1f).SetEase(Ease.EaseInOutCubic).SetOnComplete(() =>
         {
             UIScaleDown();
         });
@@ -49,6 +54,6 @@ public class BirdCollector : MonoBehaviour
 
     void UIScaleDown()
     {
-        featherUI.ScaleTween(Vector3.one, .1f).SetEase(Ease.EaseInOutCubic);
+        _featherUI.ScaleTween(Vector3.one, .1f).SetEase(Ease.EaseInOutCubic);
     }
 }

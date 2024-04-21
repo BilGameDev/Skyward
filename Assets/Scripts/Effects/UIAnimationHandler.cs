@@ -7,64 +7,69 @@ using Zenject;
 
 public class UIAnimationHandler : MonoBehaviour
 {
+    #region Fields
+
     //Injects the game manager (Dependecy Injection)
     [Inject]
     public GameManager gameManager { get; set; }
 
     [Header("UI")]
-    [SerializeField] public RectTransform mainCanvas;
-    [SerializeField] public CanvasGroup blackFadeGroup;
-    [SerializeField] public CanvasGroup gameOverGroup;
-    [SerializeField] public RectTransform gameOverPanel;
+    [SerializeField] public RectTransform MainCanvas;
+    [SerializeField] public CanvasGroup BlackFadeGroup;
+    [SerializeField] public CanvasGroup GameOverGroup;
+    [SerializeField] public RectTransform GameOverPanel;
 
-    [SerializeField] public RectTransform featherUI;
-    [SerializeField] TextMeshProUGUI gameOverScore;
+    [SerializeField] public RectTransform FeatherUI;
+    [SerializeField] TextMeshProUGUI _gameOverScore;
+
     [Header("Audio")]
-    [SerializeField] AudioSource tapSource;
-    [SerializeField] AudioClip tapClip;
+    [SerializeField] AudioSource _tapSource;
+    [SerializeField] AudioClip _tapClip;
 
-    private int finalScore;
+    private int _finalScore;
 
     [Header("Score Counter")]
-    public float duration = 5f; // The time it takes to log up to the target number
-    private int currentNumber = 0; // Current number being logged
+    public float Duration = 5f; // The time it takes to log up to the target number
+    private int _currentNumber = 0; // Current number being logged
+
+    #endregion
 
 
     void Start()
     {
-        // Subscribe to the gameover 
+        // Subscribe to the gameover event 
         gameManager.OnGameOver += GameOver;
     }
 
     void GameOver()
     {
-        finalScore = gameManager.currentScore;
-        gameOverGroup.FadeIn(1);
+        _finalScore = gameManager._currentScore;
+        GameOverGroup.FadeIn(1);
         //Tweens in the gameover panel
-        gameOverPanel.MoveUI(new Vector2(.5f, .3f), mainCanvas, 1.5f, Platinio.UI.PivotPreset.LowerCenter).SetEase(Ease.EaseOutBounce).SetOnComplete(() => { DisplayScore(); });
+        GameOverPanel.MoveUI(new Vector2(.5f, .3f), MainCanvas, 1.5f, Platinio.UI.PivotPreset.LowerCenter).SetEase(Ease.EaseOutBounce).SetOnComplete(() => { DisplayScore(); });
     }
 
     void DisplayScore()
     {
         //Tweens in the final score graphic
-        featherUI.GetComponent<CanvasGroup>().FadeIn(.2f);
-        featherUI.ScaleTween(Vector3.one, .4f).SetEase(Ease.EaseOutExpo).SetOnComplete(() => { StartCoroutine(LogNumbers()); });
+        FeatherUI.GetComponent<CanvasGroup>().FadeIn(.2f);
+        FeatherUI.ScaleTween(Vector3.one, .4f).SetEase(Ease.EaseOutExpo).SetOnComplete(() => { StartCoroutine(LogNumbers()); });
     }
 
 
     //This method is used to animate the score count
     IEnumerator LogNumbers()
     {
-        while (currentNumber <= finalScore)
+        while (_currentNumber <= _finalScore)
         {
-            gameOverScore.text = currentNumber.ToString();
-            currentNumber++;
-            tapSource.PlayOneShot(tapClip);
+            _gameOverScore.text = _currentNumber.ToString();
+            _currentNumber++;
+            _tapSource.PlayOneShot(_tapClip);
 
-            yield return new WaitForSeconds(duration / finalScore);
+            yield return new WaitForSeconds(Duration / _finalScore);
         }
 
-        gameManager.restartLevel.gameObject.SetActive(true);
+        gameManager.RestartLevelButton.gameObject.SetActive(true);
 
     }
 }

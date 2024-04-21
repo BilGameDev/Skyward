@@ -7,17 +7,20 @@ public class IntroManager : MonoBehaviour
 {
     //Handles the intro animation
 
+    #region Fields
 
     [Inject]
     public GameManager gameManager { get; set; }
-    public UIAnimationHandler uIAnimationHandler;
-    public float fadeInDuration = 2f; // Duration of the fade-in effect
+    public UIAnimationHandler UIAnimationHandler;
+    public float FadeInDuration = 2f; // Duration of the fade-in effect
+
+    #endregion
 
 
     //Fade out
     public void StartIntro()
     {
-       uIAnimationHandler.blackFadeGroup.FadeOut(fadeInDuration);
+       UIAnimationHandler.BlackFadeGroup.FadeOut(FadeInDuration);
     }
 
     public void EndIntro()
@@ -28,8 +31,8 @@ public class IntroManager : MonoBehaviour
     //Removes look at, because the actual gameplay does not require a look at target
     void RemoveLookAtTarget()
     {
-        gameManager.gameCamera.LookAt = null;
-        gameManager.transitionCamera.SetActive(false);
+        gameManager.GameCamera.LookAt = null;
+        gameManager.TransitionCamera.SetActive(false);
         gameManager.GameStarted = true;
     }
 }

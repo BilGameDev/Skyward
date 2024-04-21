@@ -10,10 +10,10 @@ public class EasterEggHandler : MonoBehaviour
 
     public void CheckEasterEgg(int trackNumber)
     {
-        if (trackNumber == spawnTrack && !trackMovement.objectPooler.gameManager.EasterEggCollected)
+        if (trackNumber == spawnTrack && !trackMovement.Pooler.gameManager.EasterEggCollected)
         {
             EasterEgg.SetActive(true);
-            trackMovement.objectPooler.gameManager.EasterEggCollected = true;
+            trackMovement.Pooler.gameManager.EasterEggCollected = true;
         }
 
     }

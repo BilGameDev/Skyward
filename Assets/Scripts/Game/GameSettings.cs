@@ -5,5 +5,5 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Skyward/Game Settings", order = 1)]
 public class GameSettings : ScriptableObject
 {
-    public bool soundOn = true;
+    public bool SoundOn = true;
 }

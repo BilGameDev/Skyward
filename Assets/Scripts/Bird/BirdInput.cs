@@ -5,12 +5,18 @@ using Zenject;
 
 public class BirdInput : MonoBehaviour
 {
-    private float lastTapTime = 0f;
-    private float tapSpeed = .2f; // Time in seconds for a double tap
-    [HideInInspector] public Vector2 touchDeltaPosition;
-    public LayerMask easterEggLayer;
-    // Injects the game manager and birdMovement (Dependecy Injection)
+    #region Fields
 
+    [HideInInspector] public Vector2 TouchDeltaPosition;
+    public LayerMask EasterEggLayer;
+
+    private float _lastTapTime = 0f;
+    private float _tapSpeed = .2f; // Time in seconds for a double tap
+
+    #endregion
+
+
+    // Injects the game manager and birdMovement (Dependecy Injection)
     [Inject]
     public BirdMovement birdMovement { get; set; }
 
@@ -32,12 +38,12 @@ public class BirdInput : MonoBehaviour
             // Double-tap detection
             if (touch.phase == TouchPhase.Began)
             {
-                if (Time.time - lastTapTime < tapSpeed)
+                if (Time.time - _lastTapTime < _tapSpeed)
                 {
                     // Detected a double tap
                     birdMovement.SetReset(true);
                 }
-                lastTapTime = Time.time;
+                _lastTapTime = Time.time;
             }
 
             // Check if it's a tap
@@ -48,20 +54,20 @@ public class BirdInput : MonoBehaviour
                 RaycastHit hit;
 
                 // Check if the touch hits an object on the selectable layers
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, easterEggLayer))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, EasterEggLayer))
                 {
                     // Handle object selection
                     GameObject easterEgg = hit.collider.gameObject;
                     easterEgg.GetComponent<EasterEgg>().Acquire();
-                    
+
                 }
             }
 
             if (!birdMovement.GetReset())
             {
-                touchDeltaPosition = touch.deltaPosition;
+                TouchDeltaPosition = touch.deltaPosition;
 
-                birdMovement.HandleMovement(touchDeltaPosition);
+                birdMovement.HandleMovement(TouchDeltaPosition);
             }
         }
     }

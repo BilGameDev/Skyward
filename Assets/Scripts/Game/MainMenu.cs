@@ -7,43 +7,48 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
+    #region Fields
+
     [Header("Game Settings")]
-    [SerializeField] GameSettings gameSettings;
-    [SerializeField] AudioSource mainMenuSource;
+    [SerializeField] GameSettings _gameSettings;
+    [SerializeField] AudioSource _mainMenuSource;
 
     [Header("UI")]
-    [SerializeField] Button playGame;
-    [SerializeField] Button colorPicker;
-    [SerializeField] Button settings;
-    [SerializeField] BirdColor birdColor;
-    [SerializeField] Button soundButton;
-    [SerializeField] TextMeshProUGUI soundText;
+    [SerializeField] Button _playGameButton;
+    [SerializeField] Button _colorPickerButton;
+    [SerializeField] Button _settingsButton;
+    [SerializeField] BirdColor _birdColorButton;
+    [SerializeField] Button _soundButton;
+    [SerializeField] TextMeshProUGUI _soundText;
 
     [Header("Bird Animation")]
-    [SerializeField] Animator birdAnimator;
-    [SerializeField] LayerMask birdLayer;
+    [SerializeField] Animator _birdAnimator;
+    [SerializeField] LayerMask _birdLayer;
 
-    private bool audioMuted = false;
+    private bool _audioMuted = false;
+
+    #endregion
+
     void Start()
     {
 
         Application.targetFrameRate = 60;
 
-        audioMuted = !gameSettings.soundOn;
+        _audioMuted = !_gameSettings.SoundOn;
 
         SetAudio();
 
-        playGame.onClick.AddListener(() =>
+        _playGameButton.onClick.AddListener(() =>
         {
             PlayGame();
         });
 
-        colorPicker.onClick.AddListener(() =>
+        _colorPickerButton.onClick.AddListener(() =>
         {
-            birdColor.RandomizeBird();
+            _birdColorButton.RandomizeBird();
         });
 
-        soundButton.onClick.AddListener(() =>
+        _soundButton.onClick.AddListener(() =>
         {
             ToggleMute();
         });
@@ -67,10 +72,10 @@ public class MainMenu : MonoBehaviour
                 RaycastHit hit;
 
                 // Check if the touch hits an object on the selectable layers
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, birdLayer))
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, _birdLayer))
                 {
                     // Handle object selection
-                    birdAnimator.SetTrigger("Tap");
+                    _birdAnimator.SetTrigger("Tap");
 
                 }
             }
@@ -79,15 +84,15 @@ public class MainMenu : MonoBehaviour
 
     void ToggleMute()
     {
-        audioMuted = !audioMuted;
-        gameSettings.soundOn = !audioMuted;
+        _audioMuted = !_audioMuted;
+        _gameSettings.SoundOn = !_audioMuted;
         SetAudio();
     }
 
     void SetAudio()
     {
-        mainMenuSource.mute = audioMuted;
-        soundText.text = audioMuted ? "Sound : Off" : "Sound : On";
+        _mainMenuSource.mute = _audioMuted;
+        _soundText.text = _audioMuted ? "Sound : Off" : "Sound : On";
     }
 
 
